@@ -6,7 +6,7 @@ define("SECRETKEY", "your_secret_key");
 /** 业务ID，易盾根据产品业务特点分配 */
 define("BUSINESSID", "your_business_id");
 /** 易盾短信服务发送接口地址 */
-define("API_URL", "https://sms.dun.163yun.com/v2/sendsms");
+define("API_URL", "http://sms.dun.163yun.com/v2/sendsms");
 /** api version */
 define("VERSION", "v2");
 /** API timeout*/
