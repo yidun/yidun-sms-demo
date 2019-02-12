@@ -68,6 +68,7 @@ public class SmsSendDemo {
         map.put("mobile", mobile);
         //国际短信
         map.put("internationalCode", "对应的国家编码");
+        map.put("params", params);
         map.put("nonce", UUID.randomUUID().toString().replace("-", ""));
         map.put("secretId", SECRETID);
         String sign = SignatureUtils.genSignature(SECRETKEY, map);
