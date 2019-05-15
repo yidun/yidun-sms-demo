@@ -81,9 +81,9 @@ if __name__ == "__main__":
         "needUp": "false",
         "mobile": "your mobile",
         "templateId": "10084",
-        "params": "p1=xx&p2=xx",
-        # 国际短信对应的国际编码
-        "internationalCode": ""
+        "params": "p1=xx&p2=xx"
+        # 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
+        # "internationalCode": "对应的国家编码"
     }
     ret = api.send(params)
     if ret is not None:

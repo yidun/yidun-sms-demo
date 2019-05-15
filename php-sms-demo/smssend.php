@@ -85,8 +85,8 @@ function main()
         "templateId" => "xx",
         "mobile" => "xxx",
         "params" => "xx",
-        //国际短信对应的国际区号,不是国际短信不要该值
-        "internationalCode" => "",
+        // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
+        // "internationalCode" => "对应的国家编码",
     );
     $ret = check($params);
     var_dump($ret);

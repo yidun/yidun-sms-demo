@@ -66,8 +66,8 @@ public class SmsSendDemo {
         map.put("needUp", "false");
         map.put("templateId", templateId);
         map.put("mobile", mobile);
-        //国际短信
-        map.put("internationalCode", "对应的国家编码");
+        // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
+        // map.put("internationalCode", "对应的国家编码");
         map.put("params", params);
         map.put("nonce", UUID.randomUUID().toString().replace("-", ""));
         map.put("secretId", SECRETID);
