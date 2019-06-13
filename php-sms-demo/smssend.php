@@ -84,7 +84,8 @@ function main()
         "needUp" => "false",
         "templateId" => "xx",
         "mobile" => "xxx",
-        "params" => "xx",
+		"paramType" => "json",
+        "params" => "json格式字符串",
         // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
         // "internationalCode" => "对应的国家编码",
     );

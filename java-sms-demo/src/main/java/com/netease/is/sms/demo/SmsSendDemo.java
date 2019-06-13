@@ -6,15 +6,17 @@
 
 package com.netease.is.sms.demo;
 
-import com.netease.is.sms.demo.utils.HttpClient4Utils;
-import com.netease.is.sms.demo.utils.SignatureUtils;
-import org.apache.http.Consts;
-import org.apache.http.client.HttpClient;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import org.apache.http.Consts;
+import org.apache.http.client.HttpClient;
+
+import com.alibaba.fastjson.JSONObject;
+import com.netease.is.sms.demo.utils.HttpClient4Utils;
+import com.netease.is.sms.demo.utils.SignatureUtils;
 
 /**
  * @author haoshijing
@@ -48,10 +50,13 @@ public class SmsSendDemo {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        //此处用申请通过的模板id
+        // 此处用申请通过的模板id
         String templateId = "xxx";
-        //模板参数对应,例如模板为您的验证码为${p1},请于${p2}时间登陆到我们的服务器
-        String params = "p1=xx&p2=xx";
+        // 模板参数对应的json格式数据,例如模板为您的验证码为${p1},请于${p2}时间登陆到我们的服务器
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("p1", "123");
+        jsonObject.put("p2", "20180816");
+        String params = jsonObject.toJSONString();
         String mobile = "xx";
         Map<String, String> datas = buildParam(mobile, templateId, params);
         String result = HttpClient4Utils.sendPost(httpClient, API_URL, datas, Consts.UTF_8);
@@ -68,6 +73,7 @@ public class SmsSendDemo {
         map.put("mobile", mobile);
         // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
         // map.put("internationalCode", "对应的国家编码");
+        map.put("paramType", "json");
         map.put("params", params);
         map.put("nonce", UUID.randomUUID().toString().replace("-", ""));
         map.put("secretId", SECRETID);
