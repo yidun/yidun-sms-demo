@@ -78,7 +78,6 @@ if __name__ == "__main__":
     api = SmsSendAPIDemo(SECRET_ID, SECRET_KEY, BUSINESS_ID)
 
     params = {
-        "needUp": "false",
         "mobile": "your mobile",
         "templateId": "10084",
 		"paramType": "json",

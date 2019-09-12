@@ -81,7 +81,6 @@ function main()
 {
     echo "mb_internal_encoding=" . mb_internal_encoding() . "\n";
     $params = array(
-        "needUp" => "false",
         "templateId" => "xx",
         "mobile" => "xxx",
 		"paramType" => "json",
