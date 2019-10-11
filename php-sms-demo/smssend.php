@@ -80,11 +80,14 @@ function check($params)
 function main()
 {
     echo "mb_internal_encoding=" . mb_internal_encoding() . "\n";
+	// 根据模板变量进行内容填充
+	$json_param["code"] = "123";
     $params = array(
         "templateId" => "xx",
         "mobile" => "xxx",
 		"paramType" => "json",
-        "params" => "json格式字符串",
+		// 转换成json字符串
+        "params" => json_encode($json_param),
         // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
         // "internationalCode" => "对应的国家编码",
     );
