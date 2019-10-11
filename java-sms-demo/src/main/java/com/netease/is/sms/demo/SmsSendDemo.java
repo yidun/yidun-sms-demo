@@ -68,7 +68,6 @@ public class SmsSendDemo {
         map.put("businessId", BUSINESSID);
         map.put("timestamp", String.valueOf(System.currentTimeMillis()));
         map.put("version", "v2");
-        map.put("needUp", "false");
         map.put("templateId", templateId);
         map.put("mobile", mobile);
         // 国际短信对应的国际编码(非国际短信接入请注释掉该行代码)
