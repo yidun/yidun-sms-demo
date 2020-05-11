@@ -3,7 +3,15 @@
  * 
  * Copyright 2010 NetEase.com, Inc. All rights reserved.
  */
-package com.netease.is.nc.sdk.utils;
+package com.netease.is.sms.demo.utils;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -17,14 +25,6 @@ import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * HttpClient工具类
@@ -74,8 +74,7 @@ public class HttpClient4Utils {
      */
     private static void startMonitorThread(final PoolingHttpClientConnectionManager cm) {
         Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
+           public void run() {
                 while (true) {
                     try {
                         cm.closeExpiredConnections();
