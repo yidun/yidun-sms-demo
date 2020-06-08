@@ -20,7 +20,7 @@ import urllib.request
 
 class SmsSendAPIDemo(object):
     """易盾短信发送接口示例代码"""
-    API_URL = "https://sms.dun.163yun.com/v2/sendsms"
+    API_URL = "https://sms.dun.163.com/v2/sendsms"
     VERSION = "v2"
 
     def __init__(self, secret_id, secret_key, business_id):
