@@ -39,7 +39,7 @@ public class SmsSendDemo {
     /**
      * 接口地址
      */
-    private final static String API_URL = "https://sms.dun.163yun.com/v2/sendsms";
+    private final static String API_URL = "https://sms.dun.163.com/v2/sendsms";
     /**
      * 实例化HttpClient，发送http请求使用，可根据需要自行调参
      */
