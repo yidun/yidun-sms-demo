@@ -10,12 +10,12 @@ python版本：python2.7
 __author__ = 'yidun-dev'
 __version__ = '0.1-dev'
 
-import hashlib
+from  hashlib import md5
 import json
 import random
 import time
 import urllib
-import urllib2
+import urllib.request
 
 
 class SmsSendAPIDemo(object):
@@ -45,7 +45,7 @@ class SmsSendAPIDemo(object):
         for k in sorted(params.keys()):
             buff += str(k) + str(params[k])
         buff += self.secret_key
-        return hashlib.md5(buff).hexdigest()
+        return md5(buff.encode("utf-8")).hexdigest()
 
     def send(self, params):
         """请求易盾接口
@@ -62,12 +62,14 @@ class SmsSendAPIDemo(object):
         params["signature"] = self.gen_signature(params)
 
         try:
-            params = urllib.urlencode(params)
-            request = urllib2.Request(self.API_URL, params)
-            content = urllib2.urlopen(request, timeout=1).read()
+
+            params = urllib.parse.urlencode(params)
+            params = params.encode('utf-8')
+            request = urllib.request.Request(self.API_URL, params)
+            content = urllib.request.urlopen(request, timeout=5).read()
             return json.loads(content)
-        except Exception, ex:
-            print "调用API接口失败:", str(ex)
+        except Exception as ex:
+            print("调用API接口失败:", str(ex))
 
 
 if __name__ == "__main__":
@@ -88,7 +90,7 @@ if __name__ == "__main__":
     ret = api.send(params)
     if ret is not None:
         if ret["code"] == 200:
-            taskId = ret["result"]["taskId"]
-            print "taskId = %s" % taskId
+            taskId = ret["data"]["taskId"]
+            print("taskId = %s" % taskId)
         else:
-            print "ERROR: ret.code=%s,msg=%s" % (ret['code'], ret['msg'])
+            print ("ERROR: ret.code=%s,msg=%s" % (ret['code'], ret['msg']))
