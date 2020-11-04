@@ -6,22 +6,20 @@
 
 package com.netease.is.sms.demo;
 
+import com.netease.is.sms.demo.utils.ParamUtils;
+import com.netease.is.sms.demo.utils.RequestUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.netease.is.sms.demo.utils.ParamUtils;
-import com.netease.is.sms.demo.utils.RequestUtils;
 
 /**
  * 短信发送示例
  *
- * @formatter:off
- * 发生不同类型的短信本质上是一样的。都是通过同一个接口发生，参数大同小异。
- *
+ * @author huangchao04
+ * @version 2020-11-03
+ * @formatter:off 发生不同类型的短信本质上是一样的。都是通过同一个接口发生，参数大同小异。
  * 核心参数说明：
  * · 业务ID：根据自己的业务需求选择匹配的业务。如，你需要发送一条国内验证码短信，则选择国内验证短信业务的ID。可以登录易盾官网查看已开通的业务。
  * · 模板ID：事先创建好短信模板，且已通过审核。模板必须与所选业务匹配。你可以在创建模板的时候选择其所属业务。
@@ -31,9 +29,6 @@ import com.netease.is.sms.demo.utils.RequestUtils;
  * · 模板变量：你可以在创建模板时，在其内容中添加占位符来表示变量。如，验证码短信模板中，可以添加 ${code}，并在发送短信时提供此变量的值。
  * · 国际电话区号：发送国际短信时需要提供此参数（国内短信不提供）。如，美国是1，英国是44，法国是33，俄罗斯是79。注：不要将此区号作为收信方号码的前缀。
  * @formattor:on
- * 
- * @author huangchao04
- * @version 2020-11-03
  */
 public class SendDemo {
     private static final String URI_SEND_SMS = "https://sms.dun.163.com/v2/sendsms";
@@ -140,11 +135,11 @@ public class SendDemo {
 
     /**
      * 构建国内短信的请求参数
-     * 
+     *
      * @param businessId 业务ID
      * @param templateId 短信模板ID。你需要先在易盾官网创建模板并通过审核后才能使用。模板ID需要与业务ID匹配。即，该模板属于目标业务。
-     * @param variables 短信模板中的变量值。如，你的模板内容为 “您的验证码为${code}，有效期${time}分钟。”，则此参数需指明 code 和 time 的值。
-     * @param to 收信方的号码。如，134开头的号码一般是中国移动的号码。
+     * @param variables  短信模板中的变量值。如，你的模板内容为 “您的验证码为${code}，有效期${time}分钟。”，则此参数需指明 code 和 time 的值。
+     * @param to         收信方的号码。如，134开头的号码一般是中国移动的号码。
      */
     private static Map<String, String> createParam(
             String businessId, String templateId, Map<String, String> variables, String to) {
@@ -154,11 +149,11 @@ public class SendDemo {
     /**
      * 构建国际短信的请求参数
      *
-     * @param businessId 业务ID
-     * @param templateId 短信模板ID。你需要先在易盾官网创建模板并通过审核后才能使用。模板ID需要与业务ID匹配。即，该模板属于目标业务。
-     * @param variables 短信模板中的变量值。如，你的模板内容为 “Your verification code is ${code}, valid for ${time} minutes.”，则此参数需指明 code
-     *        和 time 的值。
-     * @param to 收信方的号码。不包含国际电话区号。
+     * @param businessId         业务ID
+     * @param templateId         短信模板ID。你需要先在易盾官网创建模板并通过审核后才能使用。模板ID需要与业务ID匹配。即，该模板属于目标业务。
+     * @param variables          短信模板中的变量值。如，你的模板内容为 “Your verification code is ${code}, valid for ${time} minutes.”，则此参数需指明 code
+     *                           和 time 的值。
+     * @param to                 收信方的号码。不包含国际电话区号。
      * @param countryCallingCode 收信方号码的国际电话区号。如，美国是1，英国是44，法国是33，俄罗斯是79。
      */
     private static Map<String, String> createParamForInternational(
@@ -170,7 +165,7 @@ public class SendDemo {
             String businessId, String templateId, Map<String, String> variables, String to, String countryCallingCode) {
         Map<String, String> params = new HashMap<>();
 
-        params.put("nonce", UUID.randomUUID().toString().replace("-", ""));
+        params.put("nonce", ParamUtils.createNonce());
         params.put("timestamp", String.valueOf(System.currentTimeMillis()));
         params.put("version", "v2");
 
