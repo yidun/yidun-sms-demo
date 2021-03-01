@@ -69,7 +69,7 @@ public class OtpVerifyDemo {
     }
 
     /**
-     * 发生验证码短信：指明由易盾生成验证码
+     * 发送验证码短信：指明由易盾生成验证码
      */
     private static SendResponse sendOtp() {
         // 这是你的 国内验证码短信 业务的ID。可以登录易盾官网查看此业务ID。
@@ -95,7 +95,7 @@ public class OtpVerifyDemo {
     /**
      * 验证用户回填的验证码
      *
-     * @param requestId 之前发生验证码短信时，易盾返回的请求ID。
+     * @param requestId 之前发送验证码短信时，易盾返回的请求ID。
      * @param code 用户回填的验证码。
      */
     private static VerifyResponse verifyOtp(String requestId, String code) {
